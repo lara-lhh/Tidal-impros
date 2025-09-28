@@ -1,0 +1,38 @@
+d1 $ off 0.5 ((0.125 ~>).rev)
+ $ chunk 4 (ply"<4 8 2>").(rev).(striate "<4 8 16>")
+ $ jux (rev.(# distort 0.2))
+ $ n (fit 3 [0,1,2,3,4] "0 [~ 1] 2 1") # s "hh" # room 0.5
+ # size 0.6 # speed (fit 3 [0,1,2,3,4,5,6] "0 [~ 1] 2 1")
+ # vowel "<a e i>"
+
+d2
+  $ off 0.125 (# up 2)
+  $ jux (rev)
+  $ someCyclesBy 0.2 (stut' 5 (1/16)(|*| up 1.2))
+  $ chunk  4 ((ply "<4 8 2>")).(rev).(striate "<32 8 16>")
+  $ n (fit 3 [0,1,2,3,4] "1 [~ 2] 0 [~ 2*2]") # s "tink"
+  # cut 2 # speed ( range 0.3 1.8 $ slow 2 $ tri)
+
+d3
+  $ sometimesBy 0.2 (fast 2)
+  $ off 0.25 (+ 12) $ chunk 4 (+ 4)
+  $ off 0.125 (+ "7 3")
+  $ n (scale "minPent" "0 2 3 4") # s "bd" # gain 1.2 # cut 1
+  # lpf (range 300 8000 $ slow 2 $ sine)
+  # resonance (range 0.03 0.8 $ slow 3 $ cosine)
+  # pan (range 0.2 0.8 $ slow 2 $ rand)
+
+d3 silence
+
+  d4  $ s "can*8"
+    # pan (rand)
+    # sustain 0.1
+    # n "-1 -3 0 2"
+    # lpf (range 200 10000 $ slow 8 $ sine) # resonance  0.2
+
+  d3 silence
+
+  d5 $ off 0.125 (# up 2)
+  $ chunk 4 ((ply "<4 8 2>")).(rev).(striate"<32 8 16>")
+  $ s "bd*8 ~" # gain (range 0.3 0.8 $ tri)
+  # pan (rand)
